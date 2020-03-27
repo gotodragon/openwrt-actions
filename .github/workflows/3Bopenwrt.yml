@@ -42,17 +42,14 @@ jobs:
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
     
-    - name: Costom configure file
+    - name: Configuration Customization - 3Bopenwrt
+      env:
+        CONFIG_FILE: '3Bopenwrt.config'
       run: |
-          cd openwrt
-          rm -f .config
-          cp ../3BOpenwrt .config
-          chmod +x ./3Bopenwrt.sh && ./3Bopenwrt.sh
-          
-    - name: Make Defconfig
-      run: |
-          cd openwrt
-          make defconfig
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x ./3Bopenwrt.sh && ./3Bopenwrt.sh
+        cd openwrt && make defconfig
+       
     - name: Make download
       run: |
           cd openwrt
