@@ -47,7 +47,7 @@ jobs:
           cd openwrt
           rm -f .config
           cp ../3BOpenwrt .config
-          chmod +x ./diy.sh && ./diy.sh
+          chmod +x ./3BOpenwrt.sh && ./3BOpenwrt.sh
           
     - name: Make Defconfig
       run: |
